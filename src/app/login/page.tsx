@@ -44,10 +44,15 @@ function LoginContent() {
 
   async function handleGoogle() {
     const supabase = createClient();
-    await supabase.auth.signInWithOAuth({
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: { redirectTo: `${window.location.origin}/auth/callback` },
     });
+    if (error) {
+      toast.error(
+        "Login com Google ainda não tá configurado neste projeto. Usa o e-mail por enquanto."
+      );
+    }
   }
 
   return (
