@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import { Mail, Sparkles } from "lucide-react";
@@ -18,6 +18,13 @@ function LoginContent() {
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [cooldown, setCooldown] = useState(0);
+
+  useEffect(() => {
+    if (cooldown <= 0) return;
+    const timer = setInterval(() => setCooldown((c) => Math.max(0, c - 1)), 1000);
+    return () => clearInterval(timer);
+  }, [cooldown]);
 
   async function handleMagicLink() {
     if (!email.includes("@")) {
@@ -40,6 +47,7 @@ function LoginContent() {
       return;
     }
     setSent(true);
+    setCooldown(30);
   }
 
   return (
@@ -65,9 +73,21 @@ function LoginContent() {
           <div className="rounded-2xl border border-border bg-card p-6 text-center">
             <Mail className="mx-auto mb-3 size-8 text-accent-violet" />
             <h1 className="mb-1 font-semibold">Cheque seu e-mail</h1>
-            <p className="text-sm text-muted-foreground">
+            <p className="mb-5 text-sm text-muted-foreground">
               Mandamos um link mágico pra <strong>{email}</strong>.
             </p>
+            <Button
+              variant="outline"
+              className="w-full"
+              onClick={handleMagicLink}
+              disabled={loading || cooldown > 0}
+            >
+              {loading
+                ? "Enviando…"
+                : cooldown > 0
+                  ? `Reenviar em ${cooldown}s`
+                  : "Reenviar e-mail"}
+            </Button>
           </div>
         ) : (
           <div className="rounded-2xl border border-border bg-card p-6">
