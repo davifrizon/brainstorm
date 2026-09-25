@@ -301,8 +301,13 @@ export function StickyNote({
         </div>
       )}
 
-      {/* Hover toolbar */}
-      <div className="pointer-events-none absolute -top-9 left-0 flex items-center gap-1 opacity-0 transition-opacity group-hover:pointer-events-auto group-hover:opacity-100">
+      {/* Toolbar: shown on hover (desktop) or when the note is selected (touch) */}
+      <div
+        className={cn(
+          "absolute -top-9 left-0 flex items-center gap-1 opacity-0 transition-opacity group-hover:pointer-events-auto group-hover:opacity-100",
+          selected ? "pointer-events-auto opacity-100" : "pointer-events-none"
+        )}
+      >
         {QUICK_EMOJIS.slice(0, 3).map((e) => (
           <button
             key={e}

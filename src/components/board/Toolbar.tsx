@@ -54,6 +54,8 @@ export function Toolbar({
                 <button
                   type="button"
                   onClick={() => setTool(t.id)}
+                  aria-label={t.label}
+                  aria-pressed={tool === t.id}
                   className={cn(
                     "grid size-9 place-items-center rounded-xl text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground",
                     tool === t.id && "bg-accent-violet/15 text-accent-violet"
@@ -80,6 +82,7 @@ export function Toolbar({
                 type="button"
                 disabled={!canUndo}
                 onClick={onUndo}
+                aria-label="Desfazer"
                 className="grid size-9 place-items-center rounded-xl text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground disabled:opacity-30"
               />
             }
@@ -95,6 +98,7 @@ export function Toolbar({
                 type="button"
                 disabled={!canRedo}
                 onClick={onRedo}
+                aria-label="Refazer"
                 className="grid size-9 place-items-center rounded-xl text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground disabled:opacity-30"
               />
             }

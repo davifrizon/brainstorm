@@ -18,6 +18,7 @@ export function ZoomControls({
       <button
         type="button"
         onClick={onZoomOut}
+        aria-label="Diminuir zoom"
         className="grid size-8 place-items-center rounded-lg text-muted-foreground hover:bg-accent hover:text-accent-foreground"
       >
         <Minus className="size-3.5" />
@@ -25,6 +26,7 @@ export function ZoomControls({
       <button
         type="button"
         onClick={onReset}
+        aria-label="Redefinir zoom para 100%"
         className="min-w-11 px-1 text-center text-xs font-medium text-muted-foreground hover:text-foreground"
       >
         {Math.round(zoom * 100)}%
@@ -32,6 +34,7 @@ export function ZoomControls({
       <button
         type="button"
         onClick={onZoomIn}
+        aria-label="Aumentar zoom"
         className="grid size-8 place-items-center rounded-lg text-muted-foreground hover:bg-accent hover:text-accent-foreground"
       >
         <Plus className="size-3.5" />
@@ -40,6 +43,7 @@ export function ZoomControls({
       <button
         type="button"
         onClick={onReset}
+        aria-label="Ajustar zoom pra caber tudo"
         className="grid size-8 place-items-center rounded-lg text-muted-foreground hover:bg-accent hover:text-accent-foreground"
       >
         <Maximize className="size-3.5" />
