@@ -329,14 +329,14 @@ create policy "members can remove own vote" on public.votes for delete to authen
 create policy "members can view stars" on public.stars for select to authenticated
   using (exists (select 1 from public.notes n where n.id = note_id and public.is_board_member(n.board_id)));
 create policy "members can star" on public.stars for insert to authenticated
-  with check (user_id = auth.uid());
+  with check (user_id = auth.uid() and exists (select 1 from public.notes n where n.id = note_id and public.is_board_member(n.board_id)));
 create policy "members can unstar" on public.stars for delete to authenticated
   using (user_id = auth.uid());
 
 create policy "members can view reactions" on public.reactions for select to authenticated
   using (exists (select 1 from public.notes n where n.id = note_id and public.is_board_member(n.board_id)));
 create policy "members can react" on public.reactions for insert to authenticated
-  with check (user_id = auth.uid());
+  with check (user_id = auth.uid() and exists (select 1 from public.notes n where n.id = note_id and public.is_board_member(n.board_id)));
 create policy "members can remove own reaction" on public.reactions for delete to authenticated
   using (user_id = auth.uid());
 
