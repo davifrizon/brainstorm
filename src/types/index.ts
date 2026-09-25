@@ -7,6 +7,7 @@ export interface Profile {
   avatarUrl: string | null;
   status: string | null;
   onboarded: boolean;
+  email?: string | null;
 }
 
 export interface Board {

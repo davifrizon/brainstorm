@@ -43,6 +43,7 @@ export function useCurrentUser() {
                 avatarUrl: data.avatar_url,
                 status: data.status,
                 onboarded: data.onboarded,
+                email: user.email ?? null,
               }
             : null,
           loading: false,

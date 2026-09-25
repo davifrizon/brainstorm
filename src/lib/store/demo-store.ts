@@ -54,6 +54,7 @@ interface DemoProfile {
   avatarUrl: string | null;
   status: string | null;
   onboarded: boolean;
+  email?: string | null;
 }
 
 interface HistorySlice {

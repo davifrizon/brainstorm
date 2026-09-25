@@ -39,6 +39,11 @@ export function DashboardHeader() {
           <DropdownMenuContent align="end" className="w-56">
             <DropdownMenuLabel>
               <p className="font-medium">{profile?.displayName ?? "Você"}</p>
+              {profile?.email && (
+                <p className="truncate text-xs font-normal text-muted-foreground">
+                  {profile.email}
+                </p>
+              )}
               {profile?.status && (
                 <p className="text-xs font-normal text-muted-foreground">
                   {profile.status}

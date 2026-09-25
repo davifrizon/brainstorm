@@ -116,6 +116,12 @@ export default function OnboardingPage() {
           </div>
 
           <div className="grid gap-4">
+            {profile?.email && (
+              <div className="grid gap-2">
+                <Label htmlFor="email">E-mail</Label>
+                <Input id="email" value={profile.email} disabled />
+              </div>
+            )}
             <div className="grid gap-2">
               <Label htmlFor="name">Como te chamam?</Label>
               <Input
